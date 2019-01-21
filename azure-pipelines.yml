@@ -4,7 +4,9 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/xamarin
 
 trigger:
-- dev
+  branches:
+      include:
+      - dev
 
 pool:
   vmImage: 'macOS-10.13'
