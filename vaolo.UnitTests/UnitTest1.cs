@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace vaolo.tests
+namespace vaolo.UnitTests
 {
     public class UnitTest1
     {
