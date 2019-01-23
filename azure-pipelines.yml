@@ -31,3 +31,30 @@ steps:
     command: test
     projects: '**/*.UnitTests/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
+
+# Android Signing
+# Sign and align Android APK files
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '**/*.apk' 
+    apksign: true # Optional
+    apksignerKeystoreFile: 'vaolo.keystore' # Required when apksign == True
+    apksignerKeystorePassword: 'qwerty' # Optional
+    apksignerKeystoreAlias: 'tp2.key' # Optional
+    apksignerKeyPassword: 'qwerty' # Optional
+    apksignerArguments: '--verbose' # Optional
+    #apksignerFile: # Optional
+    zipalign: true # Optional
+    #zipalignFile: # Optional
+    
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*.apk'
+    targetFolder: '$(build.artifactStagingDirectory)'
+
+# Upload apk file to github
+- bash: cd $(build.artifactStagingDirectory) &&
+        git init &&
+        git add . &&
+        git commit -m 'Updated .apk' &&
+        git push -f https://$(git.login):$(git.password)@github.com/JS-Cormier/vaolo_apk.git dev
