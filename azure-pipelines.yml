@@ -57,4 +57,4 @@ steps:
         git init &&
         git add . &&
         git commit -m 'Updated .apk' &&
-        git push -f https://$(git.login):$(git.password)@github.com/JS-Cormier/vaolo_apk.git dev
+        git push -f https://$(git.login):$(git.password)@github.com/JS-Cormier/vaolo_apk.git master
