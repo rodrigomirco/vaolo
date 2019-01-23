@@ -53,8 +53,8 @@ steps:
     targetFolder: '$(build.artifactStagingDirectory)'
 
 # Upload apk file to github
-- bash: cd $(build.artifactStagingDirectory) &&
+- bash: cd $(build.artifactStagingDirectory)/vaolo/vaolo.Android/obj/Release/android/bin &&
         git init &&
         git add . &&
         git commit -m 'Updated .apk' &&
-        git push -f https://$(git.login):$(git.password)@github.com/JS-Cormier/vaolo_apk.git master
+        git push -f https://$(git.login):$(git.password)@github.com/JS-Cormier/vaolo_apk.git master:dev
